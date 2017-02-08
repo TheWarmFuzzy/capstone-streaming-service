@@ -1,7 +1,23 @@
 #Ignore everything
 /*
+configs/*
+modules/*
 
 #Except the following
 
 #Git
 !.gitignore
+
+#Server
+!install.bat
+!package.json
+!server.js
+
+!configs/
+!configs/server.json
+
+!modules/
+!modules/log.js
+
+
+#Client
