@@ -1,8 +1,10 @@
 module.exports = {
-	log
+	date_time_log
 };
 
-function log()
+console.old_log = console.log;
+
+function date_time_log()
 {	
 	//Get the current time in ISO format
 	var timestamp = new Date().toISOString();
@@ -11,6 +13,6 @@ function log()
 	Array.prototype.unshift.call(arguments, timestamp, "-");
 	
 	//Call console.log with the new argument list
-	console.log.apply(console.log, arguments);
+	console.old_log.apply(console.old_log, arguments);
 }
 

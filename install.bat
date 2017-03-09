@@ -1,2 +1,3 @@
 @echo off
-call npm install express --save
+call npm install --save express 
+call npm install --save multer 
