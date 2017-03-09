@@ -14,9 +14,31 @@ console.log = extra_logs.date_time_log;
 //Server Variables
 var http = require('http');
 var express = require('express');
+var helmet = require('helmet');
 var app = express();
 var server = app.listen(PORT,start);
-
+app.use(helmet({
+	contentSecurityPolicy:{
+		directives:{
+			defaultSrc:["'self'"],
+			styleSrc:["'self'"]
+		}
+	},
+	frameguard:{
+		action:'deny'
+	},
+	hidePoweredBy:{ 
+		setTo: 'PHP 7.1.2' 
+	},
+	hsts:{
+		force:true,
+		maxAge:5184000
+	},
+	nSniff:true,
+	xssFilter:{
+		setOnOldIE: true
+	}
+}));
 
 
 var fs = require('fs');
