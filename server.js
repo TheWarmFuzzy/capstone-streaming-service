@@ -14,31 +14,12 @@ console.log = extra_logs.date_time_log;
 //Server Variables
 var http = require('http');
 var express = require('express');
-var helmet = require('helmet');
+
 var app = express();
 var server = app.listen(PORT,start);
-app.use(helmet({
-	contentSecurityPolicy:{
-		directives:{
-			defaultSrc:["'self'"],
-			styleSrc:["'self'"]
-		}
-	},
-	frameguard:{
-		action:'deny'
-	},
-	hidePoweredBy:{ 
-		setTo: 'PHP 7.1.2' 
-	},
-	hsts:{
-		force:true,
-		maxAge:5184000
-	},
-	nSniff:true,
-	xssFilter:{
-		setOnOldIE: true
-	}
-}));
+var security_director = require("./lib/security_director.js");
+app.use(security_director());
+
 
 
 var fs = require('fs');
@@ -53,7 +34,8 @@ app.use("/videos", r_director.app);
 app.route('/')
 .get(function(req, res, next)
 {
-	res.sendFile(PAGE_HOME);
+	//res.sendFile(PAGE_HOME);
+	res.render(PAGE_HOME);
 })
 .post(function(req,res,next)
 {

@@ -19,5 +19,8 @@ modules/*
 !modules/
 !modules/log.js
 
+!lib/security_director.js
+!lib/modules_sec/helmet.js
+!lib/modules_sec/csrf.js
 
 #Client
