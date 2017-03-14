@@ -1,7 +1,7 @@
 //Server Constants
 const PORT = 8080;
-const WEB_DIRECTORY = __dirname + "/www";
-global.WEB_DIRECTORY = WEB_DIRECTORY;
+const ROOT_DIRECTORY = __dirname;
+global.ROOT_DIRECTORY = ROOT_DIRECTORY;
 
 //Environment Variables
 var config = require("./configs/server.json");

@@ -1,5 +1,4 @@
 @echo off
-call npm install --save body-parser
 call npm install --save cookie-parser
 call npm install --save connect
 call npm install --save csurf
