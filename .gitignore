@@ -2,6 +2,7 @@
 /*
 configs/*
 modules/*
+lib/*
 
 #Except the following
 
@@ -19,5 +20,11 @@ modules/*
 !modules/
 !modules/log.js
 
+!lib/
+!lib/security_director.js
+!lib/resource_director.js
+!lib/modules_sec/
+!lib/modules_sec/helmet.js
+!lib/modules_sec/csrf.js
 
 #Client
