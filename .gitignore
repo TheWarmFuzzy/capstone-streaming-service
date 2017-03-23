@@ -26,5 +26,6 @@ lib/*
 !lib/modules_sec/
 !lib/modules_sec/helmet.js
 !lib/modules_sec/csrf.js
+!lib/modules_sec/signed_urls.js
 
 #Client
