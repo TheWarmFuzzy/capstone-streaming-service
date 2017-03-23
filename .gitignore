@@ -23,8 +23,9 @@ lib/*
 !lib/
 !lib/security_director.js
 !lib/resource_director.js
-!lib/modules_sec/
-!lib/modules_sec/helmet.js
-!lib/modules_sec/csrf.js
+!lib/mysql.js
+!lib/middleware/
+!lib/middleware/helmet.js
+!lib/middleware/csrf.js
 
 #Client
