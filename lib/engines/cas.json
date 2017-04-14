@@ -1,0 +1,41 @@
+{
+	"upload":{
+		"categories":[
+			"Film and Animation",
+			"Autos and Vehicles",
+			"Music",
+			"Pets and Animals",
+			"Sports",
+			"Travel and Events",
+			"Gaming",
+			"People and Blogs",
+			"Comedy",
+			"Entertainment",
+			"News and Politics",
+			"Howto and Style",
+			"Education",
+			"Non-Profit and Activism",
+			"Science and Technology"
+		],
+		"privacy":[
+			"Only Me",
+			"Friends",
+			"Public-Unlisted",
+			"Public"
+		],
+		"privacy":[
+			"Only Me",
+			"Friends",
+			"Public-Unlisted",
+			"Public"
+		],
+		"languages":[
+			"English",
+			"French",
+			"Spanish"
+		]
+	},
+	"global":{
+		"google-api-client_id":"117317995166-iluas591aetn02koodm57iuf2dcljdo4"
+	}
+}

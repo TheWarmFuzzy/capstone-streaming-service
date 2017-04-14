@@ -14,18 +14,20 @@ lib/*
 !package.json
 !server.js
 
-!configs/
-!configs/server.json
-
-!modules/
-!modules/log.js
-
 !lib/
-!lib/security_director.js
-!lib/resource_director.js
+!lib/director.js
+!lib/engine.js
+!lib/input_validator.js
+!lib/log.js
 !lib/mysql.js
+!lib/signed_urls.js
+!lib/engines/
+!lib/engines/cas.js
+!lib/engines/mpd.js
 !lib/middleware/
-!lib/middleware/helmet.js
 !lib/middleware/csrf.js
+!lib/middleware/helmet.js
+!lib/middleware/router.js
+
 
 #Client
