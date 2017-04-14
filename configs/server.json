@@ -1,8 +1,0 @@
-{
-	"modules":[
-		{
-			"name":"log",
-			"path":"log.js"
-		}
-	]
-}
