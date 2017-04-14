@@ -3,7 +3,9 @@
 configs/*
 modules/*
 lib/*
-
+lib/common/*
+lib/engines/*
+lib/middleware/*
 #Except the following
 
 #Git
@@ -21,6 +23,8 @@ lib/*
 !lib/log.js
 !lib/mysql.js
 !lib/signed_urls.js
+!lib/common/
+!lib/common/errors.js
 !lib/engines/
 !lib/engines/cas.js
 !lib/engines/mpd.js
