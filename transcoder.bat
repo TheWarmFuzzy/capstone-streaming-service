@@ -1,9 +1,7 @@
 @echo off
 
 REM Current directory and video within
-SET home="%~dp0"
-SET vm1="%~dp0%1"
-echo %home%
+SET vm1="%1"
 echo %vm1%
 
 REM Directory to save the dash files in
@@ -17,7 +15,7 @@ SET vq5="video_1280x720_2400k.mp4"
 SET vq6="video_1920x1080_4800k.mp4"
 
 REM Directory to save the dash files in
-cd "%~dp0%2"
+cd "%2"
 
 REM Preview image specs
 SET col=8
@@ -118,16 +116,6 @@ if exist "temp.txt" (
 	del "temp.txt"
 ) else (
 	echo We lost the temp file...
-)
-
-REM Change the directory back to where the original video file is
-cd "%home%"
-
-REM Delete the original video
-if exist "%vm1%" (
-	del "%vm1%"
-) else (
-	echo We lost the original video...
 )
 
 REM "%vq1%" "%vq2%" "%vq3%" "%vq4%" "%vq5%" "%vq6%"
