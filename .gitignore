@@ -15,6 +15,7 @@ lib/middleware/*
 !install.bat
 !package.json
 !server.js
+!transcoder.bat
 
 !lib/
 !lib/director.js
