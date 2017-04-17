@@ -3,7 +3,6 @@ const PORT = 8080;
 
 //Environment Variables
 var config = require("./configs/server.json");
-var server_credentials = require("./configs/server_credentials.json");
 var extra_logs = require("./lib/log.js");
 console.log = extra_logs.date_time_log;
 
@@ -39,7 +38,7 @@ app.use(session({
 	saveUninitialized:false,
 	cookie:{
 		httpOnly:true,
-		maxAge:60000,
+		maxAge:864000000,
 		sameSite:false,
 		secure:false
 	}
