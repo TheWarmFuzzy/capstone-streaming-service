@@ -1,19 +1,43 @@
+//-----------------------------------------------------------------------------
+//-Initialization--------------------------------------------------------------
+//-----------------------------------------------------------------------------
+
 //Server Constants
 const PORT = 8080;
+const PORT_SECURE = 8443;
 
 //Environment Variables
 var config = require("./configs/server.json");
+
+//Replace console.log with a version that timestamps everything
 var extra_logs = require("./lib/log.js");
 console.log = extra_logs.date_time_log;
 
-//Server Variables
+//File Reading
+var path = require("path");
+var fs = require('fs');
+
+//Server Stuff
 var http = require('http');
 var https = require('https');
 var express = require('express');
 var session = require('express-session');
 var app = express();
-var server = app.listen(PORT,start);
-var path = require("path");
+var redirection_app = express();
+redirection_app.use(function(req,res,next){
+	console.log(req.hostname);
+	res.redirect(308, config.address[req.hostname]);
+});
+
+//Get the SSL Certificate
+var key = fs.readFileSync(path.resolve("./ssl/key.pem"), "utf8");
+var cert = fs.readFileSync(path.resolve("./ssl/cert.pem"), "utf8");
+var pass = fs.readFileSync(path.resolve("./ssl/passphrase.key"), "utf8");
+var credentials = {"key":key,"cert":cert, "passphrase": pass};
+
+//-----------------------------------------------------------------------------
+//-Application-----------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
 //Director
 var director = require("./lib/director.js");
@@ -38,9 +62,9 @@ app.use(session({
 	saveUninitialized:false,
 	cookie:{
 		httpOnly:true,
-		maxAge:864000000,
+		maxAge:864000000, //One day
 		sameSite:false,
-		secure:false
+		secure:true
 	}
 }));
 
@@ -53,22 +77,25 @@ app.use("/", director.www(app.get('views')));
 //Post-load Security Controls
 app.use(director.postload());
 
-//Function that is run when the server starts
-function start()
+//Function that is run when the http server starts
+function http_start()
 {
 	//Log the server address and port
-	console.log("Starting server",server.address().address + server.address().port);
+	console.log("Starting redirection server", httpServer.address().address + PORT);
+	
 }
-/*
-var sql = require("./lib/mysql.js");
-var procedure = {
-	"sql":"CALL cas_insert_user(@id,?,?)",
-	"values":["me@me.com","Myself"]
-};
 
-var procedure = {
-	"sql":"CALL cas_insert_video(@id,?,?,?,?,?,?,?)",
-	"values":["me@me.com","My Video","The greatest video in existance",0,0,"en",0]
-};
-console.log(sql.procedure(server_credentials.user_create,procedure,null));
-*/
+//Function that is run when the https server starts
+function https_start(){
+	
+	//Log the server address and port
+	console.log("Starting secure server", httpsServer.address().address + PORT_SECURE);
+	
+}
+
+//Lets get these servers started!
+var httpServer = http.createServer(redirection_app);
+var httpsServer = https.createServer(credentials,app);
+
+httpServer.listen(PORT, http_start);
+httpsServer.listen(PORT_SECURE, https_start);
