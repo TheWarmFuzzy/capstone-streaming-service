@@ -21,12 +21,13 @@ REM Preview image specs
 SET col=8
 SET row=8
 SET width=128
-
+SET width2=256
 REM Get a preview image of the video
 ffprobe -v error -count_frames -select_streams v:0 -show_entries stream=nb_read_frames -of default=nokey=1:noprint_wrappers=1 %vm1% >  temp.txt
 set /p frames=<temp.txt
 set /a frames = %frames%/(%col%*%row%)
 ffmpeg -loglevel panic -y -i %vm1% -frames 1 -q:v 1 -vf "select=not(mod(n\,%frames%)),scale=%width%:-1,tile=%col%x%row%" video_preview.jpg
+ffmpeg -loglevel panic -y -i %vm1% -frames 1 -q:v 1 -vf "select=%frames%),scale=%width2%:-1" video_preview_single.jpg
 
 REM Convert to various qualities of videos
 ffmpeg -i %vm1% -vn -c:a aac -strict experimental -b:a 96k -ar 32000 -f mp4 -y "%a1%" 
