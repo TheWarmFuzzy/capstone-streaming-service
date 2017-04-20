@@ -29,6 +29,7 @@ lib/middleware/*
 !lib/engines/
 !lib/engines/cas.js
 !lib/engines/mpd.js
+!lib/engines/prt.js
 !lib/middleware/
 !lib/middleware/csrf.js
 !lib/middleware/helmet.js
