@@ -27,7 +27,8 @@ ffprobe -v error -count_frames -select_streams v:0 -show_entries stream=nb_read_
 set /p frames=<temp.txt
 set /a frames = %frames%/(%col%*%row%)
 ffmpeg -loglevel panic -y -i %vm1% -frames 1 -q:v 1 -vf "select=not(mod(n\,%frames%)),scale=%width%:-1,tile=%col%x%row%" video_preview.jpg
-ffmpeg -loglevel panic -y -i %vm1% -frames 1 -q:v 1 -vf "select=%frames%),scale=%width2%:-1" video_preview_single.jpg
+REM ffmpeg -loglevel panic -y -i %vm1% -frames 1 -q:v 1 -vf "select=%frames%),scale=%width2%:-1" video_preview_single.jpg
+ffmpeg -ss 0.5 -i %vm1% -t 1 -s 320x180 -f image2 video_preview_single.jpg
 
 REM Convert to various qualities of videos
 ffmpeg -i %vm1% -vn -c:a aac -strict experimental -b:a 96k -ar 32000 -f mp4 -y "%a1%" 
